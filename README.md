@@ -1,133 +1,210 @@
-# 👁️ EYE-Q: Smart Eye Health Monitoring System
+# 👁️ EYE-Q: Smart Eye Health Monitoring System  
+### 🚀 Non-Contact IOP Measurement & Blue Light Monitoring using IoT + Embedded Systems  
 
-## 📌 Overview
-**EYE-Q** is an advanced IoT-based eye health monitoring system designed to measure and analyze key eye parameters such as **Intraocular Pressure (IOP)** and **blue light exposure** in real-time.
-
-The system combines ultrasonic sensing, embedded systems, and AI-based analysis to provide a **non-invasive, portable, and affordable solution** for early detection of eye-related conditions like glaucoma.
-
----
-
-## 🚀 Features
-- 👁️ Non-contact IOP Measurement using ultrasonic elastography  
-- 🔵 Blue Light Exposure Detection with real-time categorization  
-- 📊 Live Monitoring Dashboard (Web APK / IoT integration)  
-- ⚠️ Smart Alerts System (LED + Buzzer feedback)  
-- 📡 Cloud Integration for data logging and analysis  
-- 🔧 Low-cost & Portable Design  
+![IoT](https://img.shields.io/badge/Domain-IoT-blue)
+![Embedded](https://img.shields.io/badge/Embedded-Raspberry%20Pi-green)
+![Sensors](https://img.shields.io/badge/Sensors-Ultrasonic%20%7C%20TCS34725-orange)
+![ADC](https://img.shields.io/badge/ADC-ADS1115-purple)
+![Protocol](https://img.shields.io/badge/Protocol-I2C-yellow)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Focus](https://img.shields.io/badge/Focus-Healthcare%20Tech-red)
+![License](https://img.shields.io/badge/License-Educational-lightgrey)
 
 ---
 
-## 🧠 System Architecture
+## 📌 Overview  
 
-### 1. Ultrasonic IOP Measurement Module
-- Uses 40 kHz ultrasonic transducers (Tx & Rx)  
-- Measures corneal stiffness via echo signal  
-- Envelope detection + amplification  
-- Processed using ADS1115 ADC  
+**EYE-Q** is an advanced **IoT-based smart eye health monitoring system** designed for **real-time, non-invasive analysis of critical eye parameters**, including **Intraocular Pressure (IOP)** and **blue light exposure**.
 
-### 2. Blue Light Detection Module
-- Uses TCS34725 color sensor  
-- Measures intensity of blue light exposure  
-- Categorizes exposure into:
+The system integrates **ultrasonic sensing, embedded signal processing, and IoT-based monitoring** to provide an **affordable, portable, and early detection solution for eye diseases such as glaucoma**.
+
+---
+
+## 🎯 Key Highlights  
+
+- 👁️ **Non-contact IOP Measurement** using ultrasonic elastography  
+- 🔵 **Blue Light Exposure Monitoring** with intelligent categorization  
+- 📊 **Real-time IoT Dashboard (Web APK)**  
+- ⚠️ **Smart Alert System (LED + Buzzer)**  
+- 📡 **Cloud-enabled data logging & analytics**  
+- 🔧 **Low-cost, portable healthcare solution**  
+- 🎯 Target precision: **0.5 mmHg (IOP measurement goal)**  
+
+---
+
+## 🧠 System Architecture  
+
+```
+Ultrasonic Tx → Eye → Rx → Amplifier → Envelope Detector → ADC → Raspberry Pi → Dashboard
+                                                            ↓
+                                                   Alert System (LED + Buzzer)
+
+TCS34725 Sensor → Raspberry Pi → Blue Light Analysis → Dashboard + Alerts
+```
+
+---
+
+## ⚙️ Working Principle  
+
+### 🔹 Ultrasonic IOP Measurement  
+- 40 kHz ultrasonic waves transmitted towards cornea  
+- Reflected echo captured using receiver  
+- Signal processed using **multi-stage amplification + envelope detection**  
+- Digital conversion via **ADS1115 (16-bit ADC)**  
+- Raspberry Pi estimates **corneal stiffness → IOP correlation**  
+
+### 🔹 Blue Light Detection  
+- **TCS34725 sensor** measures RGB values  
+- Blue light intensity extracted and categorized:  
   - Safe  
   - Moderate  
   - High  
   - Dangerous  
 
-### 3. Processing Unit
-- Raspberry Pi 4  
-- Handles:
-  - Data acquisition  
+### 🔹 Data Processing & IoT  
+- Raspberry Pi performs:  
   - Signal processing  
-  - IoT communication  
+  - Threshold classification  
+  - IoT data transmission  
+- Real-time visualization on web dashboard  
 
-### 4. Alert System
-- LED indicators:
+### 🔹 Alert System  
+- LED Indicators:  
   - No blink → Safe  
   - 3 blinks → Moderate  
   - 5 blinks → High  
   - 10 blinks → Dangerous  
-- Buzzer for critical alerts  
-
-### 5. IoT Dashboard
-- Real-time visualization of:
-  - IOP values  
-  - Blue light exposure  
-  - Alerts & history  
+- Buzzer triggers for critical conditions  
 
 ---
 
-## ⚙️ Hardware Components
+## 🛠️ Hardware Components  
 
 - Raspberry Pi 4 Model B  
-- Ultrasonic Transducers (HY40A12R09-1)  
-- ADS1115 16-bit ADC  
+- Ultrasonic Transducers (HY40A12R09-1, 40 kHz Tx & Rx)  
+- ADS1115 (16-bit ADC)  
 - TCS34725 Color Sensor  
 - LM358P / NE5532P Op-Amps  
 - IRLZ44 MOSFET  
 - Diodes (1N4148, 1N5819, UF4007)  
-- Resistors & Capacitors  
+- Passive Components (Resistors, Capacitors)  
 - LED + Buzzer Module  
 - Power Supply  
 
 ---
 
-## 💻 Software & Technologies
+## 💻 Software & Technologies  
 
-- Python (Data Processing & Control)  
-- I2C Communication Protocol  
-- Embedded Signal Processing  
-- Web Dashboard (Frontend Integration)  
-- IoT Cloud Integration  
-
----
-
-## 🔌 Working Principle
-
-1. Ultrasonic waves are transmitted towards the eye  
-2. Reflected signals are received and processed  
-3. Envelope detection extracts useful signal features  
-4. ADC converts analog signals to digital  
-5. Raspberry Pi analyzes data to estimate IOP  
-6. Blue light sensor measures exposure simultaneously  
-7. Data is displayed on dashboard and alerts are triggered  
+- **Programming:** Python  
+- **Communication:** I2C Protocol  
+- **Processing:** Embedded Signal Processing  
+- **Frontend:** Web Dashboard (Web APK)  
+- **IoT:** Cloud Integration for monitoring & storage  
 
 ---
 
-## 📊 Future Improvements
+## 📊 System Features Breakdown  
 
-- 🤖 AI-based prediction of eye diseases  
+| Module | Function |
+|-------|--------|
+| Ultrasonic System | Measures corneal stiffness |
+| ADC (ADS1115) | Converts analog signals to digital |
+| Raspberry Pi | Processing + control |
+| TCS34725 | Blue light detection |
+| IoT Dashboard | Visualization & logging |
+| Alert System | User feedback |
+
+---
+
+## 🚧 Engineering Challenges  
+
+- ⚠️ Weak ultrasonic signal detection  
+- ⚠️ Noise in analog signal chain  
+- ⚠️ Precise envelope extraction  
+- ⚠️ Calibration for IOP accuracy  
+- ⚠️ Blue light threshold tuning  
+
+---
+
+## ✅ Solutions Implemented  
+
+- ✔️ Multi-stage amplification using LM358P / NE5532P  
+- ✔️ Precision envelope detection circuit  
+- ✔️ High-resolution ADC (ADS1115)  
+- ✔️ Signal averaging for stability  
+- ✔️ Optimized threshold-based classification  
+
+---
+
+## 📸 Results  
+
+✔️ Real-time eye parameter monitoring  
+✔️ Reliable blue light exposure detection  
+✔️ Functional alert system  
+✔️ Stable IoT dashboard integration  
+
+---
+
+## 📚 Learning Outcomes  
+
+- Embedded system design (Raspberry Pi)  
+- Analog + digital signal processing  
+- Sensor interfacing (I2C, ADC)  
+- IoT system integration  
+- Biomedical sensing fundamentals  
+- Hardware debugging & calibration  
+
+---
+
+## 🔮 Future Scope  
+
+- 🤖 AI-based eye disease prediction  
 - 📱 Mobile app integration  
-- 📡 Wireless wearable version  
-- 🔍 Higher precision IOP measurement (target: **0.5 mmHg**)  
-- ☁️ Advanced cloud analytics  
+- 📡 Wearable smart eye device  
+- 🔍 High-precision IOP (≤ 0.5 mmHg target)  
+- ☁️ Advanced cloud analytics & insights  
 
 ---
 
-## 🏆 Applications
+## 🏆 Applications  
 
 - Early glaucoma detection  
-- Daily eye health monitoring  
+- Continuous eye health monitoring  
 - Screen-time safety tracking  
 - Smart healthcare systems  
 - Remote patient monitoring  
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Author  
 
 **Ratnakar Sahoo**  
 B.Tech, Electronics & Telecommunication Engineering  
 Veer Surendra Sai University of Technology (VSSUT), Burla  
 
----
-
-## 📜 License
-This project is for educational and research purposes.  
-You may modify and use it with proper credits.
+📍 Domain: Embedded Systems | IoT | Healthcare Technology  
 
 ---
 
-## 🤝 Contributions
+## ⭐ Portfolio Description (For Resume / LinkedIn)  
+
+**EYE-Q: Smart Eye Health Monitoring System**  
+Developed a non-invasive IoT-based system for real-time eye health monitoring using Raspberry Pi. Designed ultrasonic signal processing circuits for IOP estimation and implemented blue light detection using TCS34725 sensor. Integrated ADC-based data acquisition, I2C communication, and cloud-connected dashboard with alert mechanisms. Demonstrated strong expertise in embedded systems, biomedical sensing, and real-time signal processing.
+
+---
+
+## 📜 License  
+
+This project is intended for **educational and research purposes**.  
+You may use and modify it with proper attribution.  
+
+---
+
+## 🤝 Contributions  
+
 Contributions, suggestions, and improvements are welcome!  
-Feel free to fork this repository and submit a pull request.
+Feel free to fork the repository and submit a pull request.  
+
+---
+
+⭐ *If you found this project impactful, consider starring the repo!*  
